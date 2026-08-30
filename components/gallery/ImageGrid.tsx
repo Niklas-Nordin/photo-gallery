@@ -1,0 +1,1 @@
+// Will contain an amount of ImageCards components
