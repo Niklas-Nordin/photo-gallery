@@ -4,13 +4,12 @@ import Button from "@/components/ui/Button";
 export default function Home() {
   return (
     <div>
-      <div className="relative w-full">
+      <div className="relative w-full h-screen">
         <Image
           src="/Landingpage_image.jpg"
           alt="Description"
-          width={1200}
-          height={592}
-          className="w-full h-auto"
+          fill
+          className="object-cover object-center"
         />
 
         <div className="absolute inset-0 bg-black/40" />
