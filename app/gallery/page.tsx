@@ -20,6 +20,9 @@ export default function GalleryPage() {
 
         const data: Category[] = await response.json();
 
+              console.log("API DATA:", data);
+
+
         setCategories(data);
       } catch (error) {
         console.error("Fel vid hämtning av kategorier:", error);
@@ -139,9 +142,14 @@ export default function GalleryPage() {
               </div>
 
               {/* Kategorinamn */}
-              <h2 className="mt-3 text-lg font-bold underline-offset-4 group-hover:underline">
-                {category.name}
-              </h2>
+              <div>
+                <h2 className="mt-3 text-lg font-bold underline-offset-4 group-hover:underline">
+                  {category.name}
+                </h2>
+                <p>
+                  {category.albums?.length === 0 ? "Inga album" : `Antal album: ${category.albums?.length}`}
+                </p>
+              </div>
             </Link>
           );
         })}

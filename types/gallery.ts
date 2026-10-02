@@ -12,6 +12,7 @@ export type GalleryCover = {
 export type Album = {
   name: string;
   slug: string;
+  folder: string;
   images?: GalleryImage[];
   covers?: GalleryCover[];
 };

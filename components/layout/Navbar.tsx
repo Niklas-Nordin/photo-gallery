@@ -12,7 +12,7 @@ function Navbar() {
     };
     
   return (
-    <nav className="bg-background px-6 py-4 border-b border-[var(--border-color)] text-[var(--wine-red)] font-bold sticky top-0 z-50">
+    <nav className="bg-background p-4 border-b border-[var(--border-color)] text-[var(--wine-red)] font-bold sticky top-0 z-50">
         <div className="flex items-center justify-between">
             <div className="font-bold text-xl">Photo Gallery</div>
             <div className="hidden space-x-4 lg:flex">

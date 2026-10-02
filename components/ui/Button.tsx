@@ -8,7 +8,7 @@ function Button() {
   return (
     <button
       onClick={() => router.push("/gallery")}
-      className="bg-[var(--wine-red)] text-white px-4 py-2 text-sm font-bold rounded cursor-pointer lg:px-8 lg:py-4"
+      className="bg-[var(--wine-red)] text-white px-6 py-4 text-sm font-bold rounded cursor-pointer"
     >
       EXPLORE GALLERY
     </button>
