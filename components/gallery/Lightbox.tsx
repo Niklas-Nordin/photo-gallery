@@ -73,27 +73,31 @@ export default function Lightbox({
         </p>
 
         <button
-          type="button"
-          onClick={onClose}
-          aria-label="Stäng bildvisaren"
-          className="rounded-full p-2 text-3xl leading-none hover:bg-white/10"
+        type="button"
+        onClick={onClose}
+        aria-label="Stäng bildvisaren"
+        className="flex size-10 items-center justify-center rounded-full hover:bg-white/10 cursor-pointer"
         >
-          &times;
+        <img
+            src="/close_white.svg"
+            alt="Close image preview"
+            className="size-5 object-contain"
+        />
         </button>
       </div>
 
       {/* Main image */}
       <div
-        className="relative flex min-h-0 flex-1 items-center justify-center px-3 pb-4 sm:px-16"
+        className="relative flex min-h-0 flex-1 items-center justify-center px-0 pb-4 sm:px-16"
         onClick={(event) => event.stopPropagation()}
       >
         <button
           type="button"
           onClick={showPrevious}
           aria-label="Föregående bild"
-          className="absolute left-2 z-10 rounded-full bg-white/10 px-3 py-2 text-3xl hover:bg-white/20 sm:left-5 cursor-pointer"
+          className="absolute left-2 z-10 rounded-full bg-white/10 p-3 text-3xl hover:bg-white/20 sm:left-5 cursor-pointer"
         >
-          ‹
+          <img src="/previous_arrow.svg" alt="Previous image" className="size-5 object-contain -translate-x-0.5" />
         </button>
 
         <img
@@ -107,9 +111,9 @@ export default function Lightbox({
           type="button"
           onClick={showNext}
           aria-label="Nästa bild"
-          className="absolute right-2 z-10 rounded-full bg-white/10 px-3 py-2 text-3xl hover:bg-white/20 sm:right-5 cursor-pointer"
+          className="absolute right-2 z-10 rounded-full bg-white/10 p-3 text-3xl hover:bg-white/20 sm:right-5 cursor-pointer"
         >
-          ›
+          <img src="/next_arrow.svg" alt="Next image" className="size-5 object-contain translate-x-0.5" />
         </button>
       </div>
 
@@ -136,7 +140,7 @@ export default function Lightbox({
                 src={getImageUrl(image.thumbnail)}
                 alt=""
                 loading="lazy"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover cursor-pointer"
               />
             </button>
           ))}
