@@ -13,6 +13,7 @@ export type Album = {
   name: string;
   slug: string;
   folder: string;
+  imageCount?: number;
   images?: GalleryImage[];
   covers?: GalleryCover[];
 };

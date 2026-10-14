@@ -460,22 +460,20 @@ if ($album === null) {
         */
 
         $albums[] = [
-
             // Visningsnamn
-            'name' =>
-                formatName($albumName),
+            'name' => formatName($albumName),
 
             // URL
-            'slug' =>
-                createSlug($albumName),
+            'slug' => createSlug($albumName),
 
             // Faktiskt mappnamn
-            'folder' =>
-                $albumName,
+            'folder' => $albumName,
+
+            // Antal bilder i albumet
+            'imageCount' => count($images),
 
             // Covers
-            'covers' =>
-                $covers
+            'covers' => $covers
         ];
     }
 
