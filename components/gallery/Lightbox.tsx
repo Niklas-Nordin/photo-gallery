@@ -63,7 +63,7 @@ export default function Lightbox({
       className="fixed inset-0 z-50 flex flex-col bg-black/95 text-white"
       role="dialog"
       aria-modal="true"
-      aria-label="Bildvisare"
+      aria-label="Image preview"
       onClick={onClose}
     >
       {/* Top bar */}
@@ -75,7 +75,7 @@ export default function Lightbox({
         <button
         type="button"
         onClick={onClose}
-        aria-label="Stäng bildvisaren"
+        aria-label="Close image preview"
         className="flex size-10 items-center justify-center rounded-full hover:bg-white/10 cursor-pointer"
         >
         <img
@@ -94,7 +94,7 @@ export default function Lightbox({
         <button
           type="button"
           onClick={showPrevious}
-          aria-label="Föregående bild"
+          aria-label="Previous image"
           className="absolute left-2 z-10 rounded-full bg-white/10 p-3 text-3xl hover:bg-white/20 sm:left-5 cursor-pointer"
         >
           <img src="/previous_arrow.svg" alt="Previous image" className="size-5 object-contain -translate-x-0.5" />
@@ -110,7 +110,7 @@ export default function Lightbox({
         <button
           type="button"
           onClick={showNext}
-          aria-label="Nästa bild"
+          aria-label="Next image"
           className="absolute right-2 z-10 rounded-full bg-white/10 p-3 text-3xl hover:bg-white/20 sm:right-5 cursor-pointer"
         >
           <img src="/next_arrow.svg" alt="Next image" className="size-5 object-contain translate-x-0.5" />
@@ -128,7 +128,7 @@ export default function Lightbox({
               key={`${image.name}-${index}`}
               type="button"
               onClick={() => setCurrentIndex(index)}
-              aria-label={`Visa bild ${index + 1}`}
+              aria-label={`View image ${index + 1}`}
               aria-current={index === currentIndex ? "true" : undefined}
               className={`h-14 w-16 shrink-0 overflow-hidden rounded border-2 sm:h-16 sm:w-20 ${
                 index === currentIndex
@@ -138,7 +138,7 @@ export default function Lightbox({
             >
               <img
                 src={getImageUrl(image.thumbnail)}
-                alt=""
+                alt={`View image ${index + 1}`}
                 loading="lazy"
                 className="h-full w-full object-cover cursor-pointer"
               />

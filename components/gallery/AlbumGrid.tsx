@@ -1,6 +1,7 @@
 // Will contain an amount of AlbumCards components
 import type { Album } from "@/types/gallery";
 import AlbumCard from "./AlbumCard";
+import PreviousPageButton from "./PreviousPageButton";
 
 type AlbumGridProps = {
   albums: Album[];
@@ -14,19 +15,25 @@ export default function AlbumGrid({
   hrefPrefix = "/gallery",
 }: AlbumGridProps) {
   if (albums.length === 0) {
-    return <p>Inga album hittades.</p>;
+    return <p>No albums found.</p>;
   }
 
   return (
-    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-      {albums.map((album) => (
-        <AlbumCard
-          key={album.slug}
-          album={album}
-          categorySlug={categorySlug}
-          hrefPrefix={hrefPrefix}
-        />
-      ))}
-    </div>
+    <>
+      <PreviousPageButton />
+      <p className="mb-6 text-[var(--wine-red)]/80">
+        Choose an album to view its images.
+      </p>
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {albums.map((album) => (
+          <AlbumCard
+            key={album.slug}
+            album={album}
+            categorySlug={categorySlug}
+            hrefPrefix={hrefPrefix}
+          />
+        ))}
+      </div>
+    </>
   );
 }

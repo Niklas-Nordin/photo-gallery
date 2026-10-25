@@ -3,10 +3,10 @@
 :root {
   --background: #FFF8F5;
   --foreground: #171717;
-  --coffee-background: #D8C7AE;
+  --coffee-background: #e4d9cc;
   --wine-red: #6B2635;
-  --border-color: #bbb5b2;
-  --coffee-text: #3D3029;
+  --border-color: #D6CCC2;
+  --coffee-text: #2C221E;
 }
 
 @theme inline {

@@ -26,13 +26,13 @@ export default function AlbumPage() {
         );
 
         if (!response.ok) {
-          throw new Error("Kunde inte hämta bilder");
+          throw new Error("Could not fetch images");
         }
 
         const result: Album = await response.json();
         setData(result);
       } catch (error) {
-        console.error("Fel vid hämtning av bilder:", error);
+        console.error("Error fetching images:", error);
         setData(null);
       } finally {
         setLoading(false);
@@ -43,16 +43,16 @@ export default function AlbumPage() {
   }, [category, album]);
 
   if (loading) {
-    return <p className="p-6">Laddar bilder...</p>;
+    return <p className="p-6">Loading...</p>;
   }
 
   if (!data) {
-    return <p className="p-6">Kunde inte hitta albumet.</p>;
+    return <p className="p-6">Album not found.</p>;
   }
 
   return (
     <main className="px-6 py-10">
-      <h1 className="mb-8 text-3xl font-bold">{data.name}</h1>
+      <h1 className="mb-6 text-3xl font-bold">{data.name}</h1>
 
       <ImageGrid images={data.images ?? []} />
     </main>

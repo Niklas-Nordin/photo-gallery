@@ -20,7 +20,7 @@ export default function ImageCard({ image, onClick }: ImageCardProps) {
     <button
       type="button"
       onClick={onClick}
-      aria-label={`Öppna bilden ${image.name}`}
+      aria-label={`Open image ${image.name}`}
       className="group block w-full overflow-hidden rounded-lg cursor-pointer"
     >
       <img

@@ -16,13 +16,13 @@ export default function GalleryPage() {
         const response = await fetch(`${API_URL}/`);
 
         if (!response.ok) {
-          throw new Error("Kunde inte hämta kategorier");
+          throw new Error("Could not fetch categories");
         }
 
         const data: Category[] = await response.json();
         setCategories(data);
       } catch (error) {
-        console.error("Fel vid hämtning av kategorier:", error);
+        console.error("Error fetching categories:", error);
       } finally {
         setLoading(false);
       }
@@ -33,10 +33,10 @@ export default function GalleryPage() {
 
   return (
     <main className="px-6 py-10">
-      <h1 className="mb-8 text-3xl font-bold">Gallery</h1>
+      <h1 className="mb-6 text-3xl font-bold">Gallery</h1>
 
       {loading ? (
-        <p>Laddar kategorier...</p>
+        <p>Loading...</p>
       ) : (
         <CategoryGrid categories={categories} />
       )}

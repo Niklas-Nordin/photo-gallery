@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 import type { GalleryImage } from "@/types/gallery";
 import ImageCard from "./ImageCard";
 import Lightbox from "./Lightbox";
+import PreviousPageButton from "./PreviousPageButton";
 
 type ImageGridProps = {
   images: GalleryImage[];
@@ -17,12 +18,13 @@ export default function ImageGrid({ images }: ImageGridProps) {
   }, []);
 
   if (images.length === 0) {
-    return <p>Inga bilder hittades.</p>;
+    return <p>No images found.</p>;
   }
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+      <PreviousPageButton />
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
         {images.map((image, index) => (
           <ImageCard
             key={`${image.name}-${index}`}

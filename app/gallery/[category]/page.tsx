@@ -24,13 +24,13 @@ export default function CategoryPage() {
         );
 
         if (!response.ok) {
-          throw new Error("Kunde inte hämta album");
+          throw new Error("Could not fetch albums");
         }
 
         const result: Category = await response.json();
         setData(result);
       } catch (error) {
-        console.error("Fel vid hämtning av album:", error);
+        console.error("Error fetching albums:", error);
         setData(null);
       } finally {
         setLoading(false);
@@ -41,16 +41,16 @@ export default function CategoryPage() {
   }, [category]);
 
   if (loading) {
-    return <p className="p-6">Laddar album...</p>;
+    return <p className="p-6">Loading...</p>;
   }
 
   if (!data) {
-    return <p className="p-6">Kunde inte hitta kategorin.</p>;
+    return <p className="p-6">Category not found.</p>;
   }
 
   return (
     <main className="px-6 py-10">
-      <h1 className="mb-8 text-3xl font-bold">{data.name}</h1>
+      <h1 className="mb-6 text-3xl font-bold">{data.name}</h1>
 
       <AlbumGrid
         albums={data.albums ?? []}
