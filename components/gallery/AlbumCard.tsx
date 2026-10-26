@@ -18,7 +18,7 @@ export default function AlbumCard({
   return (
     <Link
       href={`${hrefPrefix}/${categorySlug}/${album.slug}`}
-      className="group relative block overflow-hidden rounded-lg bg-neutral-950 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+      className="group relative block overflow-hidden rounded-lg bg-neutral-950 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
     >
       {/* Bildbehållare */}
       <div className="relative aspect-[4/3] w-full overflow-hidden">

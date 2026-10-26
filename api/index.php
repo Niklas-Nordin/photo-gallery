@@ -141,7 +141,77 @@ function getImages(
 
 $category = $_GET['category'] ?? null;
 $album = $_GET['album'] ?? null;
+$latest = $_GET['latest'] ?? null;
 
+/*
+|--------------------------------------------------------------------------
+| 0. GET /gallery-api/?latest=5
+|
+| Returnerar de 5 senaste albumen (med komplett data och covers)
+|--------------------------------------------------------------------------
+*/
+
+if ($latest !== null) {
+    $allAlbums = [];
+
+    foreach (scandir($publicPath) as $categoryName) {
+        if ($categoryName === '.' || $categoryName === '..') continue;
+        $categoryPath = $publicPath . '/' . $categoryName;
+        if (!is_dir($categoryPath)) continue;
+
+        foreach (scandir($categoryPath) as $albumName) {
+            if ($albumName === '.' || $albumName === '..') continue;
+            $albumPath = $categoryPath . '/' . $albumName;
+            if (!is_dir($albumPath)) continue;
+
+            $imagesPath = $albumPath . '/images';
+            $thumbnailPath = $imagesPath . '/thumbnails';
+            $largePath = $imagesPath . '/large';
+
+            if (!is_dir($thumbnailPath) || !is_dir($largePath)) continue;
+
+            $images = getImages($thumbnailPath, $largePath, $categoryName, $albumName, $allowedExtensions);
+
+            if (count($images) === 0) continue;
+
+            // Skapa covers (precis som på kategorisidan)
+            $covers = [];
+            foreach (array_slice($images, 0, 4) as $image) {
+                $covers[] = [
+                    'name' => $image['name'],
+                    'thumbnail' => $image['thumbnail']
+                ];
+            }
+
+            // Hämta albumets skapelse/ändringstid baserat på mappen eller filerna
+            $albumTimestamp = filemtime($albumPath);
+
+            $allAlbums[] = [
+                'name' => formatName($albumName),
+                'slug' => createSlug($albumName),
+                'folder' => $albumName,
+                'categorySlug' => $categoryName, // Viktigt för att Next.js ska veta kategorin!
+                'imageCount' => count($images),
+                'covers' => $covers,
+                'timestamp' => $albumTimestamp
+            ];
+        }
+    }
+
+    // Sortera albumen efter tidstämpling (nyast först)
+    usort($allAlbums, function ($a, $b) {
+        return $b['timestamp'] - $a['timestamp'];
+    });
+
+    // Ta de första (t.ex. 5 st)
+    $latestAlbums = array_slice($allAlbums, 0, (int)$latest);
+
+    echo json_encode(
+        $latestAlbums,
+        JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT
+    );
+    exit;
+}
 
 /*
 |--------------------------------------------------------------------------
